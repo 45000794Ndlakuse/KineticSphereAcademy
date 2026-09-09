@@ -1,24 +1,69 @@
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 function Navbar() {
+  const [activeSection, setActiveSection] = useState("home");
+
   const navItems = [
-    "How it works",
-    "Services",
-    "About",
-    "Resources",
-    "Contact Us",
+    {
+      label: "Home",
+      id: "home",
+    },
+    {
+      label: "About",
+      id: "about",
+    },
+    {
+      label: "Services",
+      id: "services",
+    },
+    {
+      label: "Resources",
+      id: "resources",
+    },
   ];
 
-  const scrollToSection = (section) => {
-    const id = section
-      .toLowerCase()
-      .replace(/\s+/g, "-");
+  useEffect(() => {
+    const sections = navItems
+      .map((item) => document.getElementById(item.id))
+      .filter(Boolean);
 
-    const element = document.getElementById(id);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleSections = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort(
+            (a, b) =>
+              b.intersectionRatio - a.intersectionRatio
+          );
 
-    if (element) {
-      element.scrollIntoView({
+        if (visibleSections.length > 0) {
+          setActiveSection(
+            visibleSections[0].target.id
+          );
+        }
+      },
+      {
+        root: null,
+        rootMargin: "-30% 0px -45% 0px",
+        threshold: [0.1, 0.25, 0.5, 0.75],
+      }
+    );
+
+    sections.forEach((section) =>
+      observer.observe(section)
+    );
+
+    return () => observer.disconnect();
+  }, []);
+
+  const scrollToSection = (id) => {
+    const section = document.getElementById(id);
+
+    if (section) {
+      section.scrollIntoView({
         behavior: "smooth",
+        block: "start",
       });
     }
   };
@@ -26,31 +71,45 @@ function Navbar() {
   return (
     <motion.nav
       className="floating-navbar"
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
+      initial={{
+        opacity: 0,
+        y: 40,
+      }}
+      animate={{
+        opacity: 1,
+        y: 0,
+      }}
       transition={{
         duration: 0.8,
-        delay: 1,
+        delay: 0.5,
       }}
     >
       <div className="nav-links">
         {navItems.map((item) => (
           <button
-            key={item}
-            onClick={() => scrollToSection(item)}
-            className="nav-link"
+            key={item.id}
+            onClick={() =>
+              scrollToSection(item.id)
+            }
+            className={`nav-link ${
+              activeSection === item.id
+                ? "active-nav-link"
+                : ""
+            }`}
           >
-            {item}
+            {item.label}
           </button>
         ))}
       </div>
 
-      <a
-        href="#contact-us"
+      <button
         className="nav-cta"
+        onClick={() =>
+          scrollToSection("contact-us")
+        }
       >
         Get Started
-      </a>
+      </button>
     </motion.nav>
   );
 }

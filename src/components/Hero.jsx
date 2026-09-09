@@ -3,7 +3,7 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 
 function Hero() {
   return (
-    <section className="hero">
+    <section className="hero" id="home">
 
       {/* Background */}
       <div className="hero-background"></div>
@@ -21,27 +21,27 @@ function Hero() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        KINETIC
-        <span>SPHERE</span>
+        KINETIC SPHERE
+        <span>ACADEMY</span>
       </motion.div>
 
-      {/* Left arrow */}
+      {/* Left arrow
       <motion.button
         className="slider-arrow slider-arrow-left"
         whileHover={{ scale: 1.08 }}
         whileTap={{ scale: 0.95 }}
       >
         <ArrowLeft size={26} strokeWidth={1.5} />
-      </motion.button>
+      </motion.button> */}
 
       {/* Right arrow */}
-      <motion.button
+      {/* <motion.button
         className="slider-arrow slider-arrow-right"
         whileHover={{ scale: 1.08 }}
         whileTap={{ scale: 0.95 }}
       >
         <ArrowRight size={26} strokeWidth={1.5} />
-      </motion.button>
+      </motion.button> */}
 
       {/* Main content */}
       <div className="hero-content">
@@ -52,7 +52,7 @@ function Hero() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7, delay: 0.3 }}
         >
-          HUMAN PERFORMANCE & WELLNESS
+          WELLNESS & SPORTS EDUCATION
         </motion.div>
 
         <motion.h1
@@ -64,11 +64,11 @@ function Hero() {
             delay: 0.4,
           }}
         >
-          Train your body.
+          Welcome to
           <br />
-          <span>Protect your</span>
+          <span>Kinetic Sphere</span>
           <br />
-          nervous system.
+          Academy.
         </motion.h1>
 
         <motion.p
@@ -80,9 +80,7 @@ function Hero() {
             delay: 0.7,
           }}
         >
-          Innovative physical education and healthcare solutions
-          designed to improve your health, movement, recovery,
-          and athletic performance.
+          Empowering individuals through innovative physical education and healthcare solutions tailored to enhance well-being and athletic performance.
         </motion.p>
 
         <motion.div
