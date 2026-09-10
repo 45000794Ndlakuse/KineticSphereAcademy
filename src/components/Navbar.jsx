@@ -18,8 +18,16 @@ function Navbar() {
       id: "services",
     },
     {
+      label: "Why Us",
+      id: "why-choose-us",
+    },
+    {
       label: "Resources",
       id: "resources",
+    },
+    {
+      label: "Get Started",
+      id: "contact-us",
     },
   ];
 
@@ -91,25 +99,24 @@ function Navbar() {
             onClick={() =>
               scrollToSection(item.id)
             }
-            className={`nav-link ${
-              activeSection === item.id
-                ? "active-nav-link"
+            className={`nav-link ${activeSection === item.id
+                ? "active-nav-link" && "nav-cta"
                 : ""
-            }`}
+              }`}
           >
             {item.label}
           </button>
         ))}
       </div>
 
-      <button
+      {/* <button
         className="nav-cta"
         onClick={() =>
           scrollToSection("contact-us")
         }
       >
         Get Started
-      </button>
+      </button> */}
     </motion.nav>
   );
 }

@@ -2,6 +2,8 @@ import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
 import Services from "./components/Services";
+import WhyChooseUs from "./components/WhyChooseUs";
+import Resources from "./components/Resources";
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
 
       <About />
       <Services />
+      <WhyChooseUs />
+      <Resources />
     </main>
   );
 }
